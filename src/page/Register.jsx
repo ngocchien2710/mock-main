@@ -1,7 +1,5 @@
 import "../css/Register.css";
-import {
-  Button,Checkbox,DatePicker,Form,Input,Select,
-} from "antd";
+import { Button, Checkbox, DatePicker, Form, Input, Select } from "antd";
 import { useNavigate } from "react-router-dom";
 import { addUsers } from "../Services/userApi";
 
@@ -35,10 +33,9 @@ const Register = () => {
 
   const onFinish = async (values) => {
     try {
-      const response = await addUsers(values)
-      //const respone = await addUsers(values);
+      const response = await addUsers(values);
       console.log("Received values of form: ", values);
-      await navigate("/");
+      await navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +61,7 @@ const Register = () => {
         <Form.Item name="lastName" label="Last Name">
           <Input className="input" />
         </Form.Item>
-        <Form.Item name="dob" label="date of birth">
+        <Form.Item name="dateOfBirth" label="date of birth">
           <DatePicker />
         </Form.Item>
         <Form.Item name={"cccd"} label="cccd">

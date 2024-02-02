@@ -2,7 +2,7 @@ import instance from "./axiosClient";
 const addUsers = (payload: {
   firstname: string;
   lastname: string;
-  dob: Date;
+  dateOfBirth: Date;
   cccd: number;
   address: string;
   phonenumer: number;
@@ -10,11 +10,11 @@ const addUsers = (payload: {
   username: string;
   password: string;
 }) => {
-  return instance.post("úser", payload);
+  return instance.post("api/v1/auth/register", payload);
 };
 const login = (username: string, password: string) => {
   return instance.post(
-    "auth/login-v2",
+    "api/v1/auth/login-v2",
     {},
     {
       params: {

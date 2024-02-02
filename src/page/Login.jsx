@@ -79,36 +79,36 @@
 
 // export default Login;
 
-import React, { useState } from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Card, Checkbox, Form, Input } from 'antd';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { getAcessToken } from '../utils/helper';
-import { login } from '../Services/userApi';
-
+import React, { useState } from "react";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Card, Checkbox, Form, Input } from "antd";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { getAcessToken } from "../utils/helper";
+import { login } from "../Services/userApi";
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const accessToken = getAcessToken();
+  // const accessToken = getAcessToken();
 
-  if (accessToken) {
-    return <Navigate to="/home" replace />;
-  }
+  // if (accessToken) {
+  //   return <Navigate to="/home" replace />;
+  // }
 
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const response = await login(values);
     localStorage.setItem("access-token", response.data.token);
     localStorage.getItem("access-token");
+    navigate("/home");
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   const handleLogin = () => {
-    navigate('/home');
+    navigate("/home");
   };
 
   return (
@@ -120,7 +120,7 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your Username!',
+                message: "Please input your Username!",
               },
             ]}
           >
@@ -134,7 +134,7 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your Password!',
+                message: "Please input your Password!",
               },
             ]}
           >
@@ -159,7 +159,7 @@ const Login = () => {
               type="primary"
               htmlType="submit"
               className="login-form-button"
-              loading={loading}
+              // loading={loading}
               onClick={handleLogin}
             >
               Log in

@@ -7,45 +7,41 @@ import NotFound from "../page/Menu/NotFound";
 import PrivateRoute from "../Commponents/PrivateRoute";
 import Login from "../page/Login";
 
- const router = createBrowserRouter([
- 
+const router = createBrowserRouter([
   {
     path: "/",
-    element:(
+    element: (
       <PrivateRoute>
-          <Login/>
+        <Login />
       </PrivateRoute>
-    
-  ),
-    errorElement:<NotFound/>,
-    children:[
-      {
-        index: true,
-        element:<Home/>
-      },
-      {
-        path:"product",
-        element:<Product/>
-      },
-      {
-        path:"/profile",
-        element:<Profile/>
-      },
-    ]  
+    ),
+    errorElement: <NotFound />,
+    // children: [
+    //   { path: "/home", index: true, element: <Home /> },
+    //   {
+    //     path: "product",
+    //     element: <Product />,
+    //   },
+    //   {
+    //     path: "/profile",
+    //     element: <Profile />,
+    //   },
+    // ],
+  },
+  {
+    path: "/home",
+    index: true,
+    element: <Home />,
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
- 
+  { path: "/product", element: <Product /> },
+
   {
     path: "/register",
     element: <Register />,
   },
-  
-
- 
- 
- 
 ]);
-export default router
+export default router;
