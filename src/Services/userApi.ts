@@ -12,4 +12,16 @@ const addUsers = (payload: {
 }) => {
   return instance.post("User", payload);
 };
-export { addUsers };
+const login = (username: string, password: string) => {
+  return instance.post(
+    "auth/login-v2",
+    {},
+    {
+      params: {
+        username,
+        password,
+      },
+    }
+  );
+};
+export { addUsers, login };

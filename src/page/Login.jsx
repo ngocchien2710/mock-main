@@ -85,7 +85,8 @@ import { Button, Card, Checkbox, Form, Input } from 'antd';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getAcessToken } from '../utils/helper';
-import authService from '../Services/authService';
+import { login } from '../Services/userApi';
+
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -97,27 +98,13 @@ const Login = () => {
   }
 
   const onFinish = async (values) => {
-    try {
-      setLoading(true);
-      const response = await authService.login(values);
-
-      if (response?.data?.userInfo) {
-        localStorage.setItem('username', JSON.stringify(response.data.userInfo));
-      }
-
-      if (response?.data?.accessToken) {
-        localStorage.setItem('token', response.data.accessToken);
-      }
-
-      toast.success('Login successful');
-      return <Navigate to="/" replace />;
-    } catch (error) {
-      console.error(error.message);
-      const errorMessage = error?.response?.data?.message || 'Login failed';
-      toast.error(errorMessage);
-    } finally {
-      setLoading(false);
-    }
+    console.log("Received values of form: ", values);
+    const response = await login(values);
+    localStorage.setItem("access-token", response.data.token);
+    localStorage.getItem("access-token");
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
 
   const handleLogin = () => {
