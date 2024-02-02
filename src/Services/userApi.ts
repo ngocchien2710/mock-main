@@ -10,7 +10,7 @@ const addUsers = (payload: {
   username: string;
   password: string;
 }) => {
-  return instance.post("User", payload);
+  return instance.post("úser", payload);
 };
 const login = (username: string, password: string) => {
   return instance.post(
